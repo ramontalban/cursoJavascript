@@ -45,7 +45,7 @@ console.log(existe)
 const heroe = heroes.find((heroe) => heroe.id === 2)
 console.log(heroe.name)
 
-// Desustructuracion de objetos
+// Desestructuración de objetos
 const person = {
     name: 'Tony',
     age: 45,
@@ -78,7 +78,7 @@ const createHero = ({name:nombre, age, codeName, power}) => ({
 
 console.log(createHero(person))
 
-// Desestructuracion de arreglos
+// Desestructuración de arreglos
 const characters = ['Goku', 'Vegeta', 'Trunks']
 const [goku, vegeta, trunks, goten = 'Sin valor'] = characters
 console.log(goten)
@@ -187,4 +187,27 @@ const medirTiempoAsync = async () => {
 medirTiempoAsync()
 
 // Async Await Aplicado
+import giphyApiImport from "./bases/imp-exp";
+const getImage = async() => {
+    try {
+        const {data} = (await giphyApiImport.get('/random')).data
+        const {url} = data.images.original
+        console.log('getImage:', url)
+        const img = document.createElement('img')
+        img.src = url
+        document.body.append(img)
+    } catch (error) {
+      console.log('Error en la petición', error)
+      throw error
+    }
+}
+getImage()
 
+// Ternarios y null check
+console.log('Aquí empieza la sección de los ternarios y null check')
+let firstName;
+let lastName;
+console.log(`${firstName || 'No firstName'} ${lastName || 'No lastName'}`)
+const isActive = true
+const message = (isActive === true) ? 'Activo' : 'Inactivo'
+console.log(message)
